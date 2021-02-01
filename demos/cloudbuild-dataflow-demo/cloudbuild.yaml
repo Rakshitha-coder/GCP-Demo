@@ -1,7 +1,7 @@
 steps:
   - id: "get build number"
     name: gcr.io/cloud-builders/git
-    dir: 'demos/cloudbuild-dataflow-demo/streaming'
+    dir: 'cloudbuild-dataflow-demo/streaming'
     entrypoint: 'bash'
     args:
       - '-c'
@@ -24,7 +24,7 @@ steps:
           --gcpTempLocation=gs://geometric-edge-296513/temp/ \
           --runner=DataflowRunner \
           --autoscalingAlgorithm=THROUGHPUT_BASED \
-          --maxNumWorkers=10 \
+          --maxNumWorkers=2 \
           --jobName=demo \
           --buildNumber=${buildNumber} \
           --subscription=dataflow_demo_subscription \
