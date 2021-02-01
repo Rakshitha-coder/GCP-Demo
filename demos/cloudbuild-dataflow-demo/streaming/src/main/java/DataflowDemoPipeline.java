@@ -62,10 +62,10 @@ public class DataflowDemoPipeline {
         // Register Options class for our pipeline with the factory
         PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
-//         DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
-//                 .withValidation()
-//                 .as(DemoPipelineOptions.class);
-        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
+        DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
+                .withValidation()
+                .as(DemoPipelineOptions.class);
+//         PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
         final String GCP_PROJECT_NAME = options.getProject();
 //         final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
 //                 +options.getSubscription();
