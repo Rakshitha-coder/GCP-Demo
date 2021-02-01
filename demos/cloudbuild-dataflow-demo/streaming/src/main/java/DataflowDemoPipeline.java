@@ -60,15 +60,15 @@ public class DataflowDemoPipeline {
     public static void main(String[] args){
 
         // Register Options class for our pipeline with the factory
-        PipelineOptionsFactory.register(DemoPipelineOptions.class);
+//         PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
-        DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
-                .withValidation()
-                .as(DemoPipelineOptions.class);
-
+//         DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
+//                 .withValidation()
+//                 .as(DemoPipelineOptions.class);
+        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
         final String GCP_PROJECT_NAME = options.getProject();
-        final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
-                +options.getSubscription();
+//         final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
+//                 +options.getSubscription();
         final String BUILD_NUMBER = options.getBuildNumber();
 
         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
@@ -134,13 +134,13 @@ public class DataflowDemoPipeline {
     }
 }
 
-class DummyTransformation extends DoFn<PubsubMessage, PubsubMessage> {
-    private static final Logger LOG = LoggerFactory.getLogger(DummyTransformation.class);
+// class DummyTransformation extends DoFn<PubsubMessage, PubsubMessage> {
+//     private static final Logger LOG = LoggerFactory.getLogger(DummyTransformation.class);
 
-    @ProcessElement
-    public void process(ProcessContext context) {
-        LOG.info(String.format("Received message %s", new String(context.element().getPayload())));
-        PubsubMessage msg = context.element();
-        context.output(msg);
-    }
+//     @ProcessElement
+//     public void process(ProcessContext context) {
+//         LOG.info(String.format("Received message %s", new String(context.element().getPayload())));
+//         PubsubMessage msg = context.element();
+//         context.output(msg);
+//     }
 }
