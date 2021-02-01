@@ -48,7 +48,7 @@ public class DataflowDemoPipeline {
                 .addStringField("FD_ACC_NO")
                 .addStringField("OD_ACC_NO")
                 .addStringField("CURRENT_ACC_NO")
-                .adddFloatField("BALANCE")
+                .addFloatField("BALANCE")
                 .addStringField("CREDIT_CARD_NO")
                 .addStringField("DEBIT_CARD_NO")
                 .addStringField("INTERNET_BANKING")
