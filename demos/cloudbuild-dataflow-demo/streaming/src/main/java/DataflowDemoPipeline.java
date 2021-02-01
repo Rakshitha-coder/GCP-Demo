@@ -63,7 +63,7 @@ public class DataflowDemoPipeline {
 
         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
 
-        Pipeline p = Pipeline.create(options);
+        Pipeline pipeline = Pipeline.create(options);
 
     
         PCollection<Row> cvrt =  pipeline.apply("ReadDataFromBankingDataset", TextIO.read().from("gs://geometric-edge-296513/datasets/output_bankdata_year.csv"))
