@@ -93,8 +93,7 @@ public class DataflowDemoPipeline {
 
         pipeline.run();
     }
-}
-class RowParDo extends DoFn<String, Row> {
+    class RowParDo extends DoFn<String, Row> {
         @ProcessElement
         public void processElement(ProcessContext c) {
                  if (!c.element().equalsIgnoreCase(CSV_HEADER)) {
@@ -133,6 +132,8 @@ class RowParDo extends DoFn<String, Row> {
             c.output(line);
         }
     }
+}
+
 class DummyTransformation extends DoFn<PubsubMessage, PubsubMessage> {
     private static final Logger LOG = LoggerFactory.getLogger(DummyTransformation.class);
 
