@@ -91,10 +91,10 @@ public class DataflowDemoPipeline {
 
 //         pubsubMessagePCollection.apply("Dummy Transformation", ParDo.of(new DummyTransformation()));
 
-        p.run();
+        pipeline.run();
     }
 }
-public static class RowParDo extends DoFn<String, Row> {
+class RowParDo extends DoFn<String, Row> {
         @ProcessElement
         public void processElement(ProcessContext c) {
                  if (!c.element().equalsIgnoreCase(CSV_HEADER)) {
@@ -108,7 +108,7 @@ public static class RowParDo extends DoFn<String, Row> {
                 }
     }
     
-    public static class FilterHeaderFn extends DoFn<String, String> {
+ class FilterHeaderFn extends DoFn<String, String> {
         private final String header;
 
         public FilterHeaderFn(String header) {
@@ -123,7 +123,7 @@ public static class RowParDo extends DoFn<String, Row> {
             }
         }
     }
-    public static class RowToString extends DoFn<Row, String> {
+  class RowToString extends DoFn<Row, String> {
         @ProcessElement
         public void processElement(ProcessContext c) {
             String line = c.element().getValues()
