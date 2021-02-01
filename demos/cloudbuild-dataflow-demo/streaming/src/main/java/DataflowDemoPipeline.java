@@ -93,7 +93,7 @@ public class DataflowDemoPipeline {
 
         pipeline.run();
     }
-    class RowParDo extends DoFn<String, Row> {
+    static class RowParDo extends DoFn<String, Row> {
         @ProcessElement
         public void processElement(ProcessContext c) {
                  if (!c.element().equalsIgnoreCase(CSV_HEADER)) {
@@ -107,7 +107,7 @@ public class DataflowDemoPipeline {
                 }
     }
     
- class FilterHeaderFn extends DoFn<String, String> {
+ static class FilterHeaderFn extends DoFn<String, String> {
         private final String header;
 
         public FilterHeaderFn(String header) {
@@ -122,7 +122,7 @@ public class DataflowDemoPipeline {
             }
         }
     }
-  class RowToString extends DoFn<Row, String> {
+  static class RowToString extends DoFn<Row, String> {
         @ProcessElement
         public void processElement(ProcessContext c) {
             String line = c.element().getValues()
