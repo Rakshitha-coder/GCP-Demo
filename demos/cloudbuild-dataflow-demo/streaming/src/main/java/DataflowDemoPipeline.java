@@ -61,15 +61,15 @@ public class DataflowDemoPipeline {
     public static void main(String[] args){
 
 //         // Register Options class for our pipeline with the factory
-//         PipelineOptionsFactory.register(DemoPipelineOptions.class);
+        PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
-//         DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
-//                 .withValidation()
-//                 .as(DemoPipelineOptions.class);
-        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
-//         final String GCP_PROJECT_NAME = options.getProject();
-// //         final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
-// //                 +options.getSubscription();
+        DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
+                .withValidation()
+                .as(DemoPipelineOptions.class);
+//         PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
+        final String GCP_PROJECT_NAME = options.getProject();
+        final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
+                +options.getSubscription();
         final String BUILD_NUMBER = options.getBuildNumber();
 
 //         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
