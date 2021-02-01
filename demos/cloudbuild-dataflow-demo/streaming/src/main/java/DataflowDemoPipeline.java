@@ -70,7 +70,7 @@ public class DataflowDemoPipeline {
 //         final String GCP_PROJECT_NAME = options.getProject();
 // //         final String PUBSUB_SUBSCRIPTION = "projects/" +GCP_PROJECT_NAME+"/subscriptions/"
 // //                 +options.getSubscription();
-//         final String BUILD_NUMBER = options.getBuildNumber();
+        final String BUILD_NUMBER = options.getBuildNumber();
 
 //         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
 
