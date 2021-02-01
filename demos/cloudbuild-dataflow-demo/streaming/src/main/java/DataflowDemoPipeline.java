@@ -60,7 +60,7 @@ public class DataflowDemoPipeline {
     public static void main(String[] args){
 
         // Register Options class for our pipeline with the factory
-//         PipelineOptionsFactory.register(DemoPipelineOptions.class);
+        PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
 //         DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
 //                 .withValidation()
