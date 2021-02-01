@@ -8,6 +8,16 @@ import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.security.PermissionCollection;
+import java.util.stream.Collectors;
+import org.apache.beam.sdk.schemas.Schema;
+import org.apache.beam.sdk.extensions.sql.SqlTransform;
+import org.apache.beam.sdk.options.PipelineOptions;
+import org.apache.beam.sdk.io.TextIO;
+import org.apache.beam.sdk.transforms.*;
+import org.apache.beam.sdk.values.KV;
+import org.apache.beam.sdk.transforms.Sum;
+import org.apache.beam.sdk.values.Row;
 
 public class DataflowDemoPipeline {
     private static final Logger LOG = LoggerFactory.getLogger(DataflowDemoPipeline.class);
