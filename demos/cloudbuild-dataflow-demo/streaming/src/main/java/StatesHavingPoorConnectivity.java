@@ -23,8 +23,14 @@ public class StatesHavingPoorConnectivity {
                 .apply(TextIO.read().from("gs://geometric-edge-296513/datasets/CallVoiceQuality_Data_2018_May.csv"))
                 .apply("FilterInfoHeader", ParDo.of(new FilterHeaderFn(CSV_HEADER)))
                 .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()))
-		.apply("transform_to_string", ParDo.of(new RowToString()))
-                .apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
+		.apply("PrintToConsole", ParDo.of(new DoFn<String, Void>() {
+                    @ProcessElement
+                    public void processElement(ProcessContext c) {
+                        System.out.println(c.element());
+                    }
+                }));
+// 		.apply("transform_to_string", ParDo.of(new RowToString()))
+//                 .apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
 
         pipeline.run().waitUntilFinish();
 
