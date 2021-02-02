@@ -7,7 +7,6 @@ import org.apache.beam.sdk.values.*;
 import org.apache.beam.sdk.extensions.joinlibrary.Join;
 import java.security.PermissionCollection;
 import java.util.stream.Collectors;
-import jdk.internal.jline.internal.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
