@@ -17,7 +17,7 @@ public class StatesHavingPoorConnectivity {
         PipelineOptions options = PipelineOptionsFactory.create();
         Pipeline pipeline = Pipeline.create(options);
 
-        PCollection<Row> flightDetails = pipeline
+        PCollection<Void> flightDetails = pipeline
                 .apply(TextIO.read().from("gs://geometric-edge-296513/datasets/CallVoiceQuality_Data_2018_May.csv"))
                 .apply("FilterInfoHeader", ParDo.of(new FilterHeaderFn(CSV_HEADER)))
                 .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()))
