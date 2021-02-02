@@ -1,5 +1,5 @@
 steps:
-    - id: "get build number"
+  - id: "get build number"
     name: gcr.io/cloud-builders/git
     dir: 'cloudbuild-dataflow-demo/streaming'
     entrypoint: 'bash'
