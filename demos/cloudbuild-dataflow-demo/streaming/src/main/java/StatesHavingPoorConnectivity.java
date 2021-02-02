@@ -7,9 +7,12 @@ import org.apache.beam.sdk.values.*;
 import org.apache.beam.sdk.extensions.joinlibrary.Join;
 import java.security.PermissionCollection;
 import java.util.stream.Collectors;
+import jdk.internal.jline.internal.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StatesHavingPoorConnectivity {
-
+    private static final Logger LOG = LoggerFactory.getLogger(StatesHavingPoorConnectivity.class);
     private static final String CSV_HEADER =
             "Operator, In Out Travelling,Network Type,Rating,Call Drop Category,Latitude,Longitude,State Name";
 	
