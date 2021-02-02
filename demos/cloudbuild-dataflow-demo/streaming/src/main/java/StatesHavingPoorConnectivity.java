@@ -7,6 +7,8 @@ import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.transforms.*;
 import org.apache.beam.sdk.values.*;
 import org.apache.beam.sdk.extensions.joinlibrary.Join;
+import java.security.PermissionCollection;
+import java.util.stream.Collectors;
 
 public class StatesHavingPoorConnectivity {
 
