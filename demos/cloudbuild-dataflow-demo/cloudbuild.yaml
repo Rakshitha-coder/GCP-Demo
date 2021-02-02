@@ -6,7 +6,7 @@ steps:
     args:
       - '-c'
       - |
-          ./submit.sh TemplatePipeline \
+          ./submit.sh StatesHavingPoorConnectivity \
           --project=geometric-edge-296513 \
           --stagingLocation=gs://geometric-edge-296513/stage/ \
           --gcpTempLocation=gs://geometric-edge-296513/temp/ \
