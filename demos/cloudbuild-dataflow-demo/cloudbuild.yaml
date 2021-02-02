@@ -1,14 +1,4 @@
 steps:
-  - id: "get build number"
-    name: gcr.io/cloud-builders/git
-    dir: 'cloudbuild-dataflow-demo/streaming'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        git rev-parse --short HEAD > _BUILDNUMBER
-    waitFor: ['-']
-
   - id: "build and submit the dataflow job"
     name: maven:3.6.0-jdk-11-slim
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
@@ -16,17 +6,14 @@ steps:
     args:
       - '-c'
       - |
-        buildNumber=$(cat _BUILDNUMBER)
-        echo "Build Number is ${buildNumber}"
-        ./submit.sh DataflowDemoPipeline \
+        ./submit.sh StatesHavingPoorConnectivity \
           --project=geometric-edge-296513 \
           --stagingLocation=gs://geometric-edge-296513/stage/ \
           --gcpTempLocation=gs://geometric-edge-296513/temp/ \
           --runner=DataflowRunner \
           --autoscalingAlgorithm=THROUGHPUT_BASED \
           --maxNumWorkers=2 \
-          --jobName=demo \
-          --buildNumber=${buildNumber} \
+          --jobName=state \
           --subscription=dataflow_demo_subscription \
           --region=us-east1
-    waitFor: ['get build number']
+    waitFor: ['-']
