@@ -1,4 +1,14 @@
 steps:
+    - id: "get build number"
+    name: gcr.io/cloud-builders/git
+    dir: 'cloudbuild-dataflow-demo/streaming'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git rev-parse --short HEAD > _BUILDNUMBER
+    waitFor: ['-']
+    
   - id: "build and submit the dataflow job"
     name: maven:3.6.3-jdk-11
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
@@ -13,6 +23,7 @@ steps:
           --runner=DataflowRunner \
           --autoscalingAlgorithm=THROUGHPUT_BASED \
           --maxNumWorkers=2 \
-          --jobName=demo \
+          --jobName=test \
+          --buildNumber=${buildNumber} \
           --region=us-east1
-    waitFor: ['-']
+    waitFor: ['get build number']
