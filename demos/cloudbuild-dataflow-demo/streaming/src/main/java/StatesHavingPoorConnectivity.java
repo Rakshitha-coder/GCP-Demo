@@ -17,12 +17,13 @@ public class StatesHavingPoorConnectivity {
         PipelineOptions options = PipelineOptionsFactory.create();
         Pipeline pipeline = Pipeline.create(options);
 
-        PCollection<Void> flightDetails = pipeline
+        PCollection<String> flightDetails = pipeline
                 .apply(TextIO.read().from("gs://geometric-edge-296513/datasets/CallVoiceQuality_Data_2018_May.csv"))
                 .apply("FilterInfoHeader", ParDo.of(new FilterHeaderFn(CSV_HEADER)))
-                .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()))
-		.apply("transform_to_string", ParDo.of(new RowToString()))
-                .apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
+                .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()));
+		.apply("transform_to_string", ParDo.of(new RowToString()));
+	    
+                flightDetails.apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
 
         pipeline.run().waitUntilFinish();
 
