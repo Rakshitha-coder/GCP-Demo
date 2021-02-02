@@ -14,8 +14,19 @@ public class StatesHavingPoorConnectivity {
     private static final Logger LOG = LoggerFactory.getLogger(StatesHavingPoorConnectivity.class);
     private static final String CSV_HEADER =
             "Operator, In Out Travelling,Network Type,Rating,Call Drop Category,Latitude,Longitude,State Name";
+    
 	
     public static void main(String[] args) {
+	PipelineOptionsFactory.register(DemoPipelineOptions.class);
+
+    	DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
+                .withValidation()
+                .as(DemoPipelineOptions.class);
+   	final String GCP_PROJECT_NAME = options.getProject();
+	final String BUILD_NUMBER = options.getBuildNumber();
+
+        LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
+	    
         PipelineOptions options = PipelineOptionsFactory.create();
         Pipeline pipeline = Pipeline.create(options);
 
