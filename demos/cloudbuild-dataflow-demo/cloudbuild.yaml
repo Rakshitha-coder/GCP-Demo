@@ -1,18 +1,7 @@
 steps:
-  - id: "build and submit the dataflow job"
-    name: maven:3.6.3-jdk-11
-    dir: 'demos/cloudbuild-dataflow-demo/streaming'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        ./submit.sh TemplatePipeline \
-          --project=geometric-edge-296513 \
-          --stagingLocation=gs://geometric-edge-296513/stage/ \
-          --gcpTempLocation=gs://geometric-edge-296513/temp/ \
-          --runner=DataflowRunner \
-          --autoscalingAlgorithm=THROUGHPUT_BASED \
-          --maxNumWorkers=2 \
-          --jobName=state \
-          --region=us-east1
-    waitFor: ['-']
+  # 3. Build and run the Dataflow pipeline (staged template)
+- name: gcr.io/cloud-builders/gradle
+  args: ['build', 'run']
+  waitFor: ['-']
+    
+    
