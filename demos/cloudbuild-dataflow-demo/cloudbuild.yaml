@@ -1,12 +1,12 @@
 steps:
   - id: "build and submit the dataflow job"
-    name: maven:3.6.0-jdk-11-slim
+    name: maven:3.6.3-jdk-11.0.9.1
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        ./submit.sh StatesHavingPoorConnectivity \
+        ./submit.sh TemplatePipeline \
           --project=geometric-edge-296513 \
           --stagingLocation=gs://geometric-edge-296513/stage/ \
           --gcpTempLocation=gs://geometric-edge-296513/temp/ \
@@ -14,6 +14,5 @@ steps:
           --autoscalingAlgorithm=THROUGHPUT_BASED \
           --maxNumWorkers=2 \
           --jobName=state \
-          --subscription=dataflow_demo_subscription \
           --region=us-east1
     waitFor: ['-']
