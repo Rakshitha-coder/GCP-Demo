@@ -20,8 +20,7 @@ public class StatesHavingPoorConnectivity {
         PCollection<String> flightDetails = pipeline
                 .apply(TextIO.read().from("gs://geometric-edge-296513/datasets/CallVoiceQuality_Data_2018_May.csv"))
                 .apply("FilterInfoHeader", ParDo.of(new FilterHeaderFn(CSV_HEADER)))
-                .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()))
-		.apply("transform_to_string", ParDo.of(new RowToString()));
+                .apply("IdGenderKV", ParDo.of(new IdGenderKVFn()));
 	    
                 flightDetails.apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
 
@@ -29,7 +28,7 @@ public class StatesHavingPoorConnectivity {
 
     }
     
-    private static class RowToString extends DoFn<Row, String> {
+    private static class RowToString extends DoFn<String, String> {
         @ProcessElement
         public void processElement(ProcessContext c) {
             String line = c.element().getValues()
@@ -49,10 +48,10 @@ public class StatesHavingPoorConnectivity {
 
         @ProcessElement
         public void processElement(ProcessContext c) {
-            String row = c.element();
+            String x = c.element();
 
-            if (!row.isEmpty() && !row.equals(this.header)) {
-                c.output(row);
+            if (!x.isEmpty() && !x.equals(this.header)) {
+                c.output(x);
             }
         }
     }
