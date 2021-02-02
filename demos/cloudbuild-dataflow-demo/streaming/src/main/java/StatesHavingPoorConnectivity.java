@@ -27,17 +27,6 @@ public class StatesHavingPoorConnectivity {
         pipeline.run().waitUntilFinish();
 
     }
-    
-    private static class RowToString extends DoFn<String, String> {
-        @ProcessElement
-        public void processElement(ProcessContext c) {
-            String line = c.element().getValues()
-                    .stream()
-                    .map(Object::toString)
-                    .collect(Collectors.joining(","));
-            c.output(line);
-        }
-    }
     private static class FilterHeaderFn extends DoFn<String, String> {
 
         private final String header;
