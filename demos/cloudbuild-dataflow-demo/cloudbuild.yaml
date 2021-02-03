@@ -10,8 +10,8 @@ steps:
     waitFor: ['-']
     
   - id: "build and submit the dataflow job"
-    name: maven:3.6.3-jdk-11
-    dir: 'demos/cloudbuild-dataflow-demo/streaming'
+    name: maven:3.6.3-jdk-11-slim
+    dir: 'demos/cloudbuild-dataflow-demo/streaming/'
     entrypoint: 'bash'
     args:
       - '-c'
