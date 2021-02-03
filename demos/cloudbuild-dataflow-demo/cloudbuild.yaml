@@ -17,7 +17,6 @@ steps:
     - '-Dsonar.projectKey=rakshitha-coder'
     - '-Dsonar.organization=rakshitha-coder'
     - '-Dsonar.sources=.'
-tags: ['cloud-builders-community']
     waitFor: ['get build number']
     
   - id: "build and submit the dataflow job"
