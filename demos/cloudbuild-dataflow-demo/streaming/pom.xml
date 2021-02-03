@@ -19,6 +19,12 @@
         <spark.version>2.4.6</spark.version>
         <flink.artifact.name>beam-runners-flink-1.10</flink.artifact.name>
     </properties>
+       
+    <properties>
+        <sonar.projectKey>Rakshitha-coder_GCP-Demo</sonar.projectKey>
+        <sonar.organization>rakshitha-coder</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 
     <build>
         <plugins>
@@ -230,6 +236,8 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.5.4</version>
         </dependency>
+        
+        
 
     </dependencies>
 
