@@ -13,7 +13,7 @@ steps:
     name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
     args:
     - '-Dsonar.host.url=https://sonarcloud.io'
-    - '-Dsonar.login=cd0e0a8987ca54d171baf5e7f7113cf32d82360b'
+    - '-Dsonar.login=4d60b1324656fff78944ed5f175189503018419e'
     - '-Dsonar.projectKey=rakshitha-coder'
     - '-Dsonar.organization=rakshitha-coder'
     - '-Dsonar.sources=.'
