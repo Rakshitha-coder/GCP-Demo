@@ -11,21 +11,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class StatesHavingPoorConnectivity {
-//     private static final Logger LOG = LoggerFactory.getLogger(StatesHavingPoorConnectivity.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StatesHavingPoorConnectivity.class);
     private static final String CSV_HEADER =
             "Operator, In Out Travelling,Network Type,Rating,Call Drop Category,Latitude,Longitude,State Name";
     
 	
     public static void main(String[] args) {
-// 	PipelineOptionsFactory.register(DemoPipelineOptions.class);
+	PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
-//     	DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
-//                 .withValidation()
-//                 .as(DemoPipelineOptions.class);
-//    	final String GCP_PROJECT_NAME = options.getProject();
-// 	final String BUILD_NUMBER = options.getBuildNumber();
+    	DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
+                .withValidation()
+                .as(DemoPipelineOptions.class);
+   	final String GCP_PROJECT_NAME = options.getProject();
+	final String BUILD_NUMBER = options.getBuildNumber();
 
-//         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
+        LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
 	    
         PipelineOptions options = PipelineOptionsFactory.create();
         Pipeline pipeline = Pipeline.create(options);
@@ -37,7 +37,7 @@ public class StatesHavingPoorConnectivity {
 	    
                 flightDetails.apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
 
-        pipeline.run().waitUntilFinish();
+        pipeline.run();
 
     }
     private static class FilterHeaderFn extends DoFn<String, String> {
