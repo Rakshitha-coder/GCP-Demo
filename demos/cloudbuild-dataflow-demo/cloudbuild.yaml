@@ -9,17 +9,19 @@ steps:
         git rev-parse --short HEAD > _BUILDNUMBER
     waitFor: ['-']
 
-  - name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+  - id: "sonar analysis"
+    name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
     args:
     - '-Dsonar.host.url=https://sonarcloud.io'
-    - '-Dsonar.login={specify}'
-    - '-Dsonar.projectKey={specify}'
-    - '-Dsonar.organization={specify}'
+    - '-Dsonar.login=cd0e0a8987ca54d171baf5e7f7113cf32d82360b'
+    - '-Dsonar.projectKey=rakshitha-coder'
+    - '-Dsonar.organization=rakshitha-coder'
     - '-Dsonar.sources=.'
 tags: ['cloud-builders-community']
+    waitFor: ['get build number']
     
   - id: "build and submit the dataflow job"
-    name: maven:3.6.3-jdk-11-slim
+    name: maven:3.6.3-jdk-11
     dir: 'demos/cloudbuild-dataflow-demo/streaming/'
     entrypoint: 'bash'
     args:
@@ -35,6 +37,6 @@ tags: ['cloud-builders-community']
           --jobName=test \
           --buildNumber=${buildNumber} \
           --region=us-west1
-    waitFor: ['get build number']
+    waitFor: ['sonar analysis']
     
     
