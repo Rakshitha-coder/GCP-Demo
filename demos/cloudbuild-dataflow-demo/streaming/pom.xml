@@ -44,6 +44,12 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
             </plugin>
+               
+            <plugin>
+                 <groupId>org.sonarsource.scanner.maven</groupId>
+                 <artifactId>sonar-maven-plugin</artifactId>
+                 <version>3.7.0.1746</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -138,6 +144,19 @@
                     </exclusions>
                 </dependency>
             </dependencies>
+        </profile>
+             
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                  http://myserver:9000
+                </sonar.host.url>
+            </properties>
         </profile>
     </profiles>
 
