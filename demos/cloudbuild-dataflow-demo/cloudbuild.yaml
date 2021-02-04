@@ -13,7 +13,7 @@ steps:
     name: maven:3.6.3-jdk-11
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: mvn
-    args: ['clean install','sonar:sonar -Dsonar.login=4d60b1324656fff78944ed5f175189503018419e','org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar']
+    args: ['verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar','clean install','sonar:sonar -Dsonar.login=4d60b1324656fff78944ed5f175189503018419e','org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar']
     waitFor: ['get build number']
 
   - id: "sonar analysis"
