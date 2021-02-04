@@ -17,7 +17,7 @@ public class StatesHavingPoorConnectivity {
     
 	
     public static void main(String[] args) {
-// 	PipelineOptionsFactory.register(DemoPipelineOptions.class);
+	PipelineOptionsFactory.register(DemoPipelineOptions.class);
 
 //     	DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args)
 //                 .withValidation()
@@ -27,9 +27,12 @@ public class StatesHavingPoorConnectivity {
 
 //         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
 	    
-        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
-        Pipeline pipeline = Pipeline.create(options);
+        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(DemoPipelineOptions.class);
+	final String BUILD_NUMBER = options.getBuildNumber();
 
+        LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
+        Pipeline pipeline = Pipeline.create(options);
+	
         PCollection<String> flightDetails = pipeline
                 .apply(TextIO.read().from("gs://geometric-edge-296513/datasets/CallVoiceQuality_Data_2018_May.csv"))
                 .apply("FilterInfoHeader", ParDo.of(new FilterHeaderFn(CSV_HEADER)))
