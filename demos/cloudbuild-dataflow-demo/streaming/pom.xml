@@ -163,12 +163,6 @@
             <artifactId>beam-sdks-java-core</artifactId>
             <version>${beam.version}</version>
         </dependency>
-             
-        <dependency>
-            <groupId>org.apache.beam</groupId>
-            <artifactId>beam-runners-google-cloud-dataflow-java</artifactId>
-            <version>${beam.version}</version>
-        </dependency>
         
         <dependency>
             <groupId>com.google.guava</groupId>
