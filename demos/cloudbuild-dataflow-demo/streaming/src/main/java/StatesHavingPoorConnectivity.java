@@ -9,7 +9,7 @@ import java.security.PermissionCollection;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import jdk.internal.jline.internal.Log;
+// import jdk.internal.jline.internal.Log;
 
 public class StatesHavingPoorConnectivity {
 //     private static final Logger LOG = LoggerFactory.getLogger(StatesHavingPoorConnectivity.class);
@@ -31,7 +31,7 @@ public class StatesHavingPoorConnectivity {
         DemoPipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().as(DemoPipelineOptions.class);
 	final String BUILD_NUMBER = options.getBuildNumber();
 
-        LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
+//         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
         Pipeline pipeline = Pipeline.create(options);
 	
         PCollection<String> flightDetails = pipeline
