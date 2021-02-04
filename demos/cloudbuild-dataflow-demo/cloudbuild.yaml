@@ -8,6 +8,12 @@ steps:
       - |
         git rev-parse --short HEAD > _BUILDNUMBER
     waitFor: ['-']
+    
+  - id: "sonar set up"
+    name: maven:3.6.3-jdk-11
+    entrypoint: mvn
+    args: ['clean verify sonar:sonar -Dsonar.login=4d60b1324656fff78944ed5f175189503018419e','org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar']
+    waitFor: ['get build number']
 
   - id: "sonar analysis"
     name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
@@ -17,7 +23,7 @@ steps:
     - '-Dsonar.projectKey=rakshitha-coder'
     - '-Dsonar.organization=rakshitha-coder'
     - '-Dsonar.sources=.'
-    waitFor: ['get build number']
+    waitFor: ['sonar set up']
     
   - id: "build and submit the dataflow job"
     name: maven:3.6.3-jdk-11
