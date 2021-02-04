@@ -27,7 +27,7 @@ public class StatesHavingPoorConnectivity {
 
 //         LOG.info(String.format("Creating the pipeline. The build number is %s", BUILD_NUMBER));
 	    
-        PipelineOptions options = PipelineOptionsFactory.create();
+        PipelineOptions options = PipelineOptionsFactory.fromArgs(args).withValidation().create();
         Pipeline pipeline = Pipeline.create(options);
 
         PCollection<String> flightDetails = pipeline
