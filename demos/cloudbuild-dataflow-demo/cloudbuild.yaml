@@ -26,6 +26,6 @@ steps:
           --jobName=test \
           --buildNumber=${buildNumber} \
           --region=us-west1
-    waitFor: ['sonar analysis']
+    waitFor: ['get build number']
     
     
