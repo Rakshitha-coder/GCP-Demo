@@ -16,6 +16,8 @@ steps:
     args:
       - '-c'
       - |
+          buildNumber=$(cat _BUILDNUMBER)
+          echo "Build Number is ${buildNumber}"
           ./submit.sh StatesHavingPoorConnectivity \
           --project=geometric-edge-296513 \
           --stagingLocation=gs://geometric-edge-296513/stage/ \
