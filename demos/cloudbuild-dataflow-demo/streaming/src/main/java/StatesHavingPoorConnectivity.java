@@ -37,7 +37,7 @@ public class StatesHavingPoorConnectivity {
 	    
                 flightDetails.apply("write_to_gcs", TextIO.write().to("gs://geometric-edge-296513/output/result.csv").withoutSharding());
 
-        pipeline.run();
+        pipeline.run().waitUntilFinish();
 
     }
     private static class FilterHeaderFn extends DoFn<String, String> {
