@@ -13,14 +13,14 @@ steps:
     name: maven:3.6.3-jdk-11
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: mvn
-    args: ['sonar:sonar -Dsonar.login=4d60b1324656fff78944ed5f175189503018419e','org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar']
+    args: ['sonar:sonar -Dsonar.login=e127fe21b8443a13d5e8cf04ae1c1d58e3792709','org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar']
     waitFor: ['get build number']
 
   - id: "sonar analysis"
     name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
     args:
     - '-Dsonar.host.url=https://sonarcloud.io'
-    - '-Dsonar.login=4d60b1324656fff78944ed5f175189503018419e'
+    - '-Dsonar.login=e127fe21b8443a13d5e8cf04ae1c1d58e3792709'
     - '-Dsonar.projectKey=rakshitha-coder'
     - '-Dsonar.organization=rakshitha-coder'
     - '-Dsonar.sources=.'
