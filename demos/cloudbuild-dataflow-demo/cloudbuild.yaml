@@ -23,7 +23,7 @@ steps:
     - '-Dsonar.login=e127fe21b8443a13d5e8cf04ae1c1d58e3792709'
     - '-Dsonar.projectKey=rakshitha-coder'
     - '-Dsonar.organization=rakshitha-coder'
-    - '-Dsonar.sources=.'
+    - '-Dsonar.sources=demos/cloudbuild-dataflow-demo/streaming/src/main/java'
     waitFor: ['sonar set up']
     
   - id: "build and submit the dataflow job"
