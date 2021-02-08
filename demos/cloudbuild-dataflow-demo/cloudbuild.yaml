@@ -9,42 +9,9 @@ steps:
         git rev-parse --short HEAD > _BUILDNUMBER
     waitFor: ['-']
     
-  - id: "sonar set up"
+  - id: "jar creation"
     name: maven:3.6.3-jdk-11
-    dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: mvn
-    args: ['sonar:sonar -Dsonar.login=e127fe21b8443a13d5e8cf04ae1c1d58e3792709','org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar']
+    args: ['package','-Dmaven.test.skip=true']
     waitFor: ['get build number']
-
-  - id: "sonar analysis"
-    name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
-    args:
-    - '-Dsonar.host.url=https://sonarcloud.io'
-    - '-Dsonar.login=e127fe21b8443a13d5e8cf04ae1c1d58e3792709'
-    - '-Dsonar.projectKey=rakshitha-coder'
-    - '-Dsonar.organization=rakshitha-coder'
-    - '-Dsonar.sources=demos/cloudbuild-dataflow-demo/streaming/src/main/java'
-    waitFor: ['sonar set up']
-    
-  - id: "build and submit the dataflow job"
-    name: maven:3.6.3-jdk-11
-    dir: 'demos/cloudbuild-dataflow-demo/streaming/'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-          buildNumber=$(cat _BUILDNUMBER)
-          echo "Build Number is ${buildNumber}"
-          ./submit.sh StatesHavingPoorConnectivity \
-          --project=geometric-edge-296513 \
-          --stagingLocation=gs://geometric-edge-296513/stage/ \
-          --gcpTempLocation=gs://geometric-edge-296513/temp/ \
-          --runner=DataflowRunner \
-          --autoscalingAlgorithm=THROUGHPUT_BASED \
-          --maxNumWorkers=2 \
-          --jobName=test \
-          --buildNumber=${buildNumber} \
-          --region=us-west1
-    waitFor: ['sonar analysis']
-    
     
