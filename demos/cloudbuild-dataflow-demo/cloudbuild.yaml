@@ -14,9 +14,9 @@ steps:
     dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: mvn
     args: ['package','-Dmaven.test.skip=true']
-  artifacts:
-    objects:
-      location: 'gs://geometric-edge-296513/jars'
-      paths: ['/workspace/demos/cloudbuild-dataflow-demo/streaming/target/apache-beam-1.0-SNAPSHOT.jar']
-    waitFor: ['get build number']
+    artifacts:
+      objects:
+        location: 'gs://geometric-edge-296513/jars'
+        paths: ['/workspace/demos/cloudbuild-dataflow-demo/streaming/target/apache-beam-1.0-SNAPSHOT.jar']
+      waitFor: ['get build number']
     
