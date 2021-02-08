@@ -11,6 +11,7 @@ steps:
     
   - id: "jar creation"
     name: maven:3.6.3-jdk-11
+    dir: 'demos/cloudbuild-dataflow-demo/streaming'
     entrypoint: mvn
     args: ['package','-Dmaven.test.skip=true']
     waitFor: ['get build number']
